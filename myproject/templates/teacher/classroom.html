@@ -1,0 +1,193 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header text-center cloudy-knoxville-gradient">
+                    <h5 class="card-title" style="font-family: Verdana, Geneva, Tahoma, sans-serif; color: rgb(5, 5, 5);">Classroom</h5>
+                    <p class="card-category" style="font-family: 'Times New Roman', Times, serif; color: rgb(19, 19, 22);">Welcome to ------ class </p>
+                    <button class="tablink" onclick="openPage('Notice-Board', this, '#7075fe')" id="defaultOpen">Notice Board</button>
+                    <button class="tablink" onclick="openPage('News', this, '#8F50FE')" >Attendance</button>
+                    <button class="tablink" onclick="openPage('Marks', this, '#7075fe')">Marks</button>
+                   
+                </div>
+            
+                <div class="card-body tabcontent" id="Notice-Board">
+                  
+                    <div class="row ">
+                    
+                        <!-- Grid column -->
+                        <div class="col">
+                            <div class="rare-wind-gradient   text-center">
+                                <form method="POST"  enctype=multipart/form-data>
+                                    <input type="text" placeholder=" Title" name="title" class="card-category form-control">
+                                    <textarea id="summernote" name="editordata"></textarea>
+                                    <div class="row">
+                                        <div class="col">
+                                    <div class="text-center stats" style="margin: 30px;">
+                                        <select class="form-control" name="category">
+                                            <option value="assignment">Assignment</option>
+                                            <option value="notification">Notification</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        </div>
+                                        <div class="col">
+                                            <input type=file name=file>
+                                        </div>
+                                        <input type="submit" id="noti_buttom" class="btn btn-primary btn-sm"  name="noti_submit" value=" submit">
+                                    </div>
+                                    </div>
+                                 </form>
+
+
+
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                
+                </div>
+
+                <div id="News" class="tabcontent">
+                    <div class="card-body ">
+                    
+                        <div class="card card-image"
+                            style="background-image: url(../../static/img/blank-business-composition-computer-373076.jpg);  background-repeat: no-repeat; background-size: cover;">
+                            <div class="text-white text-center rgba-stylish-strong py-5 px-4">
+                                <div class="py-5">
+                    
+                                    <!-- Content -->
+                                    <h5 class="h5 orange-text"><i class="fas fa-calendar-check"></i> ATTENDANCE </h5>
+                                    <h2 class="card-title h2 my-4 py-2">Select Field To Make Attendance</h2>
+                    
+                                    <form method="POST" name="atten_submit">
+                                        <div class="form-row mb-4">
+                                            <div class="col">
+                    
+                                                <span><input placeholder="Selected date" type="text" id="filter-date" name="dates" required
+                                                        class="form-control datepicker"></span>
+                    
+                                            </div>
+                    
+                    
+                    
+                    
+                                            <div class="col">
+                                                <select class="form-control" name="branch" id="branch">
+                                                    {% for item in branches %}
+                                                    <option value="{{item.branch_id}}">{{item.branch_id}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                    
+                                            <div class="col">
+                                                <select class="form-control" required name="sem" id="sem">
+                                                    <option value=""></option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </div>
+                    
+                    
+                                            <div class="col">
+                                                <select class="form-control" required name="sec">
+                                                    <option value=""></option>
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                    <option value="C">C</option>
+                                                </select>
+                                            </div>
+                    
+                                            <div class="col" style="font-size: inherit; display: inline-block; box-sizing: content-box;">
+                                                <select class="form-control" name="subs" id="subs">
+                    
+                                                </select>
+                                            </div>
+                    
+                    
+                                        </div>
+                    
+                                        <button type="submit" name="atten_submit" id="atten_submit" class="btn peach-gradient"><i class="fas fa-clone left"></i>
+                                            Start</a>
+                    
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div id="Marks" class="tabcontent">
+                        <div class="card-body ">
+
+                        <div class="wrapper-editor">
+                        
+                            <div class="d-flex justify-content-center buttons-wrapper my-3">
+                                <button class="btn btn-rounded text-white blue darken-3 btn-sm add-content-edit" type="button"><i
+                                        class="fas fa-toggle-off"></i></button>
+                                <button class=" btn btn-rounded text-white purple
+                                        lighten-2 btn-sm add-new-row" type="button">
+                                    <i class="fas fa-plus"></i></button>
+                                <button class="btn btn-rounded text-white red btn-sm remove-first-tr" type="button"> <i
+                                        class="fas fa-eraser"></i></button>
+                            </div>
+                        
+                            <table id="contentEx" class="table table-striped display" cellspacing=" 0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Extn.</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Extn.</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+         </div>
+        
+    </div>
+
+</div>
+
+
+{% endblock content %}

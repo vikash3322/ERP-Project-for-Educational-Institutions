@@ -1,0 +1,126 @@
+{% extends "admin/admin_layout.html" %}
+{% block content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card  ">
+                <div class="card-body ">
+
+                    <div class="card card-image"
+                        style="background-image: url(../../static/img/blank-business-composition-computer-373076.jpg);  background-repeat: no-repeat; background-size: cover;">
+                        <div class="text-white text-center rgba-stylish-strong py-5 px-4">
+                            <div class="py-5">
+
+                                <!-- Content -->
+                                <h5 class="h5 orange-text"><i class="fas fa-calendar-check"></i> ATTENDANCE </h5>
+                                <h2 class="card-title h2 my-4 py-2">Select Field To Make Attendance</h2>
+
+                                <form method="POST" >
+                                    <div class="form-row mb-4">
+                                        <div class="col">
+
+                                            <span><input placeholder="Selected date" type="text" id="filter-date"
+                                                    name="dates" required class="form-control datepicker"></span>
+
+                                        </div>
+
+
+
+
+                                        <div class="col">
+                                            <select class="form-control" name="branch" id="branch">
+                                                {% for item in branches %}
+                                                <option value="{{item.branch_id}}">{{item.branch_id}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <div class="col">
+                                            <select class="form-control" required name="sem" id="sem">
+                                                <option value=""></option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+
+
+                                        <div class="col">
+                                            <select class="form-control" required name="sec">
+                                                <option value=""></option>
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="C">C</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col"
+                                            style="font-size: inherit; display: inline-block; box-sizing: content-box;">
+                                            <select class="form-control" name="subs" id="subs">
+
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+
+                                    <button type="submit" class="btn peach-gradient"><i class="fas fa-clone left"></i>
+                                        Start</a>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+</script>
+
+
+<script>
+    let branch_select = document.getElementById('branch');
+    let sem_select = document.getElementById('sem');
+    let sub_select = document.getElementById('subs');
+
+    sem_select.onchange = function () {
+        branch = branch_select.value;
+        sem = sem_select.value;
+
+
+        fetch('/attendance/' + branch + ',' + sem).then(function (response) {
+            response.json().then(function (data) {
+                console.table(data);
+                let optionHTML = '';
+
+                for (let sub of data.sems) {
+                    optionHTML += '<option value="' + sub.sub_id + '">' + sub.sub_name + '</option>';
+                }
+                sub_select.innerHTML = optionHTML;
+
+            });
+        });
+
+
+    }
+
+
+</script>
+
+{% endblock content %}

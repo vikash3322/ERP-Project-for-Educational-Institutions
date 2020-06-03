@@ -1,0 +1,41 @@
+{% extends "admin/admin_layout.html" %}
+{% block content %}
+
+<div class="content">
+    
+    <section id="attend">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card  ">
+                    <div class="card-header ">
+                        <h5 class="card-title">Attendance info {{date}}</h5>
+                        <p class="card-category">Attendance subject info {{sub}} </p>
+                    </div>
+                     <div class="card-body ">
+    
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class=flashes>
+                        {% for message in messages %}
+                        <p style="margin-right: 20%; margin-left: 20%;"><strong style="color: slateblue;">{{ message }}</strong></p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% endwith %}
+                    <form method=post enctype=multipart/form-data>
+                        <input type=file name=file>
+                        <input type=submit value=Upload>
+    
+    
+    
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+  
+    </section>
+    
+    </div>
+
+{% endblock content %}

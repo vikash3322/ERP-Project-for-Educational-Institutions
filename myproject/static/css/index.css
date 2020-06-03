@@ -1,0 +1,140 @@
+body{
+   background-color: #090303;
+background-image: linear-gradient(304deg, #090303 1%, #2c6bec 48%, #131313 100%);
+
+
+}
+
+#jumbo{
+    background-color: ivory;
+    opacity: 0.8;
+}
+
+
+.banner_image{
+ padding-top: 75px; 
+ padding-bottom: 50px;     
+ text-align: center;      
+ color: #f8f8f8;      
+ background: url(../img/intro-bg_1.jpg) no-repeat center;     
+ background-size: cover; 
+
+}
+
+.banner_content{
+    position: relative;
+    padding-top: 6%;
+    padding-bottom: 6%;
+    margin-bottom: 12%;
+    background-color: rgba(0, 0, 0, 0.7);
+    max-width: 660px;
+}
+
+
+
+footer{
+    margin-top: 200px;
+    padding: 10px 0;
+    background-color: #000;
+    color:#fff;
+    font-size:14px;
+    width: 100%;
+    padding-bottom: inherit;
+}
+
+
+#login-panel{
+   
+    text-align: center;
+   margin-top: 10%;
+   margin-left: 30%;
+   margin-right: 30%;
+   margin-bottom: 10%;
+   
+
+}
+
+#signup-box{
+
+    margin-top: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 8%;
+}
+.caption{
+    text-align: center;
+}
+
+table,th,td{
+    
+    border: solid black 3px;
+    text-align: center;
+}
+th,td{
+    padding: 10px;
+}
+table{
+       margin-top: 10%;
+       
+}
+
+#cart-box{
+    margin-bottom: 27%;
+}
+
+#setting-box{
+    margin-top: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 17%;
+}
+
+
+#success-msg{
+    margin-top: 10%;
+    
+    margin-bottom: 30%;
+
+}
+
+::placeholder{
+    
+    background-color:white;
+    color: black;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+input{
+  
+border: 0px;
+}
+
+.card-body{
+
+background-image: none;
+
+}
+
+::disabled{
+
+}
+
+.img-size{
+    max-height: 212px;
+}
+
+
+@media only screen and (max-width: 768px){ 
+
+    h3{
+        font-size: 20px;
+        font-family: cursive;
+    }
+
+    h2{
+        font-size: 25px;
+    }
+
+}

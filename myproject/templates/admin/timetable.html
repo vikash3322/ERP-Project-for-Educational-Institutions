@@ -1,0 +1,158 @@
+{% extends "admin/admin_layout.html" %}
+{% block content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card  ">
+                <div class="card-header ">
+                    <h5 class="card-title">Timetable</h5>
+                    <p class="card-category">Academic Timetable </p>
+                </div>
+                <div class="card-body ">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#centralModalSm">
+                        Add Timetable
+                    </button>
+
+                    <!-- Central Modal Small -->
+                    <div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog"
+                        aria-labelledby="myModalLabel" aria-hidden="true">
+
+                        <!-- Change class .modal-sm to change the size of the modal -->
+                        <div class="modal-dialog modal-lg" role="document">
+
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title w-100" id="myModalLabel">Add Timetable</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form class="text-center border border-light p-5 form-group" method="post" action="/timetable">
+                                    {{ form.hidden_tag() }}
+                                    <div class="modal-body">
+                                    
+                                    <div style="overflow-x:auto;">
+                                        <table border="2" cellspacing="3" align="center">
+                                            <tr>
+                                                <td align="center">
+                                                <td>9:00-9:50</td>
+                                                <td>9:50-10:40</td>
+                                                <td>11:00-11:50</td>
+                                                <td>11:50-12:40</td>
+                                                <td>12.40-1.30</td>
+                                                <td>1:30-2:25</td>
+                                                <td>2:25-3:20</td>
+                                                <td>3:20-4:15</td>
+                                            </tr>
+                                            
+                                                <tr>
+                                                    <td align="center">MONDAY</td>
+                                                    <td align="center">{{form.val1(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">{{form.val2(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">{{form.val3(class='form-control', placeholder='sub')  }}</td>
+                                    
+                                                    <td align="center">{{form.val4(class='form-control', placeholder='sub')  }}</td>
+                                                    <td rowspan="6" align="center">L<br>U<br>N<br>C<br>H</td>
+                                                    <td align="center">{{form.val5(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">{{form.val6(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">{{form.val7(class='form-control', placeholder='sub')  }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center">TUESDAY</td>
+                                                    <td align="center">
+                                                        <font color="blue">{{form.val8(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="red">{{form.val9(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">{{form.val10( class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="orange">{{form.val11(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="maroon">{{form.val12(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">{{form.val13(class='form-control', placeholder='sub')  }}
+                                                    <td align="center">
+                                                        <font color="maroon">{{form.val14(class='form-control', placeholder='sub')  }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center">WEDNESDAY
+                                                    <td align="center">
+                                                        <font color="blue">{{form.val15( class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="red">{{form.val16(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">{{form.val17( class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="orange">{{form.val18(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="maroon">{{form.val19(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">{{form.val20(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="maroon">{{form.val21(class='form-control', placeholder='sub')  }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center">THURSDAY
+                                                    <td align="center">
+                                                        <font color="blue">{{form.val22(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="red">{{form.val23(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">{{form.val24(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="orange">{{form.val25(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="maroon">{{form.val26(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">{{form.val27(class='form-control', placeholder='sub')  }}
+                                                    <td align="center">
+                                                        <font color="maroon">{{form.val28(class='form-control', placeholder='sub')  }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center">FRIDAY
+                                                    <td align="center">
+                                                        <font color="orange">{{form.val29(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="maroon">{{form.val30(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="blue">{{form.val31(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">{{form.val32(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="pink">{{form.val33(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">
+                                                        <font color="brown">{{form.val34(class='form-control', placeholder='sub')  }}</td>
+                                                    <td align="center">{{form.val35(class='form-control', placeholder='sub')  }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center">Select Field</td>
+                                                    <td colspan="2" align="center">
+                                                        {{form.branch(class='form-control', placeholder='BRANCH')  }}
+                                                    </td>
+                                                    <td colspan="2" align="center">
+                                                    {{form.sem(class='form-control')  }}
+                                                    </td>
+                                                    <td colspan="3" align="center">
+                                                    {{form.sec(class='form-control')  }}
+                                                    </td>
+                                                </tr>
+                                        
+                                        </table>
+                                    </div>
+                                    </div>
+                                    <p style="color: blueviolet;">Noite : Enter Branch Code in Branch Field</p>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary btn-sm"
+                                            data-dismiss="modal">Close</button>
+                                    {{form.submit(class='btn btn-primary btn-sm')}}
+                                    </div>
+                            </form>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Central Modal Small -->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+{% endblock content %}

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Books</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
+   
+  <link rel="stylesheet" href="../static/css/Style.css" />
+  <link rel="stylesheet" href="../static/css/mobile-style.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<style>
+  
+.clock {
+  border-radius: 100%;
+  background: #ffffff;
+  font-family: "Montserrat";
+  border: 5px solid white;
+  box-shadow: inset 2px 3px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.wrap {
+  overflow: hidden;
+  position: relative;
+  width: 65px;
+  height: 65px;
+  border-radius: 100%;
+}
+
+.minute,
+.hour {
+  position: absolute;
+  height: 97px;
+  width: 4px;
+  margin: auto;
+  top: -148%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: black;
+  transform-origin: bottom center;
+  transform: rotate(0deg);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.minute {
+  position: absolute;
+  height: 132px;
+  width: 2px;
+  top: -204%;
+  left: 0;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  transform: rotate(90deg);
+}
+
+.second {
+  position: absolute;
+  height: 90px;
+  width: 2px;
+  margin: auto;
+  top: -135%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 4px;
+  background: #FF4B3E;
+  transform-origin: bottom center;
+  transform: rotate(180deg);
+  z-index: 1;
+}
+
+.dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 100px;
+  background: white;
+  border: 2px solid #1b1b1b;
+  border-radius: 100px;
+  margin: auto;
+  z-index: 1;
+}
+</style>
+
+</head>
+
+{% with errors = get_flashed_messages(category_filter=["error"]) %}
+{% if errors %}
+<div class="alert-message block-message error">
+  <a class="close" href="#">×</a>
+  <ul>
+    {%- for msg in errors %}
+    <li>{{ msg }}</li>
+    {% endfor -%}
+  </ul>
+</div>
+{% endif %}
+{% endwith %}
+
+<body style="overflow-x: hidden;">
+  <header>
+    <div class="container-fluid p-0">
+      <nav class="navbar navbar-expand-lg">
+        <div class="clock">
+          <div class="wrap">
+            <span class="hour"></span>
+            <span class="minute"></span>
+            <span class="second"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-book-reader fa-2x mx-3"></i>Project</a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i class="fas fa-align-right text-light"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="mr-auto"></div>
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">HOME
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section2">STUDENT ZONE</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section1">About Us</a>
+            </li>
+            <li class="nav-item dropdown">
+              <div class="dropdown">
+                <a href="#" class="nav-link">STUDY MATERIAL</a>
+                <div class="dropdown-content">
+                  <a href="#">NOTES</a>
+                  <a href="/compiler">COMPILER</a>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('blog') }}">BLOG</a>
+            </li>
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link"  href="{{ url_for(current_user.user_type+'_dashboard') }}">Hello  {{current_user.username}}</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+            <p class="nav-link" style="color:rgb(255, 255, 255); font: 1em sans-serif;" id="demo"></p>
+            </li>
+
+            {% endif %}
+            {% if current_user.is_authenticated %}
+                <li >
+                    <a class="gradient-button gradient-button-1" href="/logout">Logout</a>
+                </li>
+                {% else %}
+                <li>
+                  <a class="gradient-button gradient-button-1" href="/login">Log In</a>
+                </li>
+                {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-7 col-sm-12  text-white">
+          <h6>ERP PROJECT FOR:</h6>
+          <h1>Educational Institutions</h1>
+          <p>
+            Coming at one platform to enlighten the education , Be the part of this college website for getting further knowledge.
+          </p>
+          <button class="btn btn-light px-5 py-2 primary-btn">
+            Click Here to Probe
+          </button>
+        </div>
+        <div class="col-md-5 col-sm-12  h-25">
+          <img src="../static/img/STUDY.png" alt="Book" />
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine"   class="section-1" id="section1">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <div class="pray">
+              <img src="../static/img/ABOUT IMG.png" alt="Pray" class="" />
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="panel text-left">
+              <h1>About Our Project</h1>
+              <p class="pt-4">
+                A college management system enables colleges and higher education to manage enrollment, admissions, students, faculty,
+                attendance,fees, scheduling, assignments, grades and library of the institution.
+              </p>
+              <p>
+                Stufa Project CMS for colleges is a comprehensive web-based software with a responsive design mobile app. This helps
+                colleges and universities to save time, money and resources.
+                The College ERP allows you to manage the entire academic and administrative processes hassle free. In addition , the
+                mobile apps and solution for universities and colleges is a
+                compelling value proposition which makes it as one of the most versatile college management system you can have for your
+                college, university or institute. The automated notification
+                system allows you to seamlessly connect Teachers, Students, Administrators and Parents and keep them informed in
+                real-time on all aspects of the institution.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine" class="section-2 container-fluid p-0" id="section2">
+      <div class="cover">
+        <div class="overlay"></div>
+        <div class="content text-center">
+          <h1>Student zone to explore more</h1>
+          <p>
+            All important updates, notes and queries are given in below sections for students.
+          </p>
+        </div>
+      </div>
+      <div class="container-fluid text-center">
+        <div class="numbers d-flex flex-md-row flex-wrap justify-content-center">
+          <div class="card" style="width: 18rem; margin: 7px;">
+            <img src="../static/img/nb.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Notice Board</h5>
+              <p class="card-text p-0"> Getting recent and upcoming notifications of the college circular.Explore here to get
+                more updates. </p>
+              <a href="#" class="btn btn-primary">Click Here</a>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem; margin: 7px;">
+            <img src="../static/img/study-material.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Study Material</h5>
+              <p class="card-text p-0">All semester notes and assignments questions are availabe here check out
+                and download it. </p>
+              <a href="#" class="btn btn-primary">Click Here</a>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem; margin: 7px;">
+            <img src="../static/img/student enquiry.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Student Query Zone</h5>
+              <p class="card-text p-0">This Student Query Zone is created for students to get clarify their doubts by
+                posting their queries.
+              </p>
+              <a href="#" class="btn btn-primary">Click Here</a>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem; margin: 7px;">
+            <img src="../static/img/exam.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Exam</h5>
+              <p class="card-text p-0">This Exam section is made for getting the updates regarding exams schedule,
+                results and previous year questions etc.
+              </p>
+              <a href="#" class="btn btn-primary">Click Here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!--
+      <div class="purchase text-center">
+        <h1>Purchase Whatever You Want</h1>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+        </p>
+        <div class="cards">
+          <div class="d-flex flex-row justify-content-center flex-wrap">
+            <div class="card">
+              <div class="card-body">
+                <div class="title">
+                  <h5 class="card-title">PDF</h5>
+                </div>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in.
+                </p>
+                <div class="pricing">
+                  <h1>$77.99</h1>
+                  <a href="#" class="btn btn-dark px-5 py-2 primary-btn mb-5">Purchase Now</a>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="title">
+                  <h5 class="card-title">E-book</h5>
+                </div>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in.
+                </p>
+                <div class="pricing">
+                  <h1>$99.99</h1>
+                  <a href="#" class="btn btn-dark px-5 py-2 primary-btn mb-5">Purchase Now</a>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="title">
+                  <h5 class="card-title">Print Copy</h5>
+                </div>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in.
+                </p>
+                <div class="pricing">
+                  <h1>$58.99</h1>
+                  <a href="#" class="btn btn-dark px-5 py-2 primary-btn mb-5">Purchase Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>-->
+    </section>
+    <section class="section-3 container-fluid p-0 text-center">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <h1>Download Our App for all Platform</h1>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum exercitationem alias perspiciatis omnis quod possimus odit
+            voluptatum! Sunt ea quasi praesentium, tenetur doloribus animi obcaecati, sint nemo quae laudantium iusto unde
+            eaque nostrum nobis voluptatum
+          </p>
+        </div>
+      </div>
+      <div class="platform row">
+        <div class="col-md-6 col-sm-12 text-right">
+          <div class="desktop shadow-lg">
+            <div class="d-flex flex-row justify-content-center">
+              <i class="fas fa-desktop fa-3x py-2 pr-3"></i>
+              <div class="text text-left">
+                <h3 class="pt-1 m-0">Desktop</h3>
+                <p class="p-0 m-0">On website</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12 text-left">
+          <div class="desktop shadow-lg">
+            <div class="d-flex flex-row justify-content-center">
+              <i class="fas fa-mobile-alt fa-3x py-2 pr-3"></i>
+              <div class="text text-left">
+                <h3 class="pt-1 m-0">On Mobile</h3>
+                <p class="p-0 m-0">On Play Store</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine" class="section-4">
+      <div class="container text-center">
+        <h1 class="text-dark">What our Teacher's Say about us</h1>
+        <p class="text-secondary">Posting new updates and blogs.</p>
+      </div>
+      <div class="team row ">
+        <div class="col-md-4 col-12 text-center">
+          <div class="card mr-2 d-inline-block shadow-lg">
+    
+            <div class="card-img-top">
+              <img src="../static/img/1.jpg" class="img-fluid rounded-circle w-50 p-4" alt="">
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Dr Sasi Kumar M</h3>
+              <p class="card-text">
+                Qualification ME, Ph.D. Specialization CSE Experience 19 years
+                Conferences- 23. Workshops -4 Email-Id:hodcse@brindavancollege.com
+              </p>
+              <a href="#" class="text-secondary text-decoration-none">Brindavan College </a>
+              <p class="text-black-50">Professor & HOD</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12">
+          <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
+            <div class="carousel-inner text-center">
+              <div class="carousel-item active">
+                <div class="card mr-2 d-inline-block shadow">
+                  <div class="card-img-top">
+                    <img src="../static/img/2.jpg" class="img-fluid rounded-circle w-50 p-4" alt="">
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-title">Majid Shaikh</h3>
+                    <p class="card-text">
+                      Qualification BE, MTech, (Ph.D.) Specialization CNE Experience 9 Years
+                      Conferences- 13. Workshops- 11 Email-Id : abdulmajid.s@gmail.com
+                    </p>
+                    <a href="#" class="text-secondary text-decoration-none">Brindavan College</a>
+                    <p class="text-black-50">Assistant Professor</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card  d-inline-block mr-2 shadow">
+                  <div class="card-img-top">
+                    <img src="../static/img/3.jpg" class="img-fluid rounded-circle w-50 p-4" alt="">
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-title">Padmavathi H.G</h3>
+                    <p class="card-text">
+                      Qualification B E, MTech Specialization CSE Experience 14 years
+                      l Conferences- 13 Workshops- 4 Email-Id : padma243@gmail.com
+                    </p>
+                    <a href="#" class="text-secondary text-decoration-none">Brindavan College</a>
+                    <p class="text-black-50">Associate Professor</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12 text-center">
+          <div class="card mr-2 d-inline-block shadow-lg">
+            <div class="card-img-top">
+              <img src="../static/img/4.jpg" class="img-fluid rounded-circle w-50 p-4" alt="">
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Dinesh S</h3>
+              <p class="card-text">
+                Qualification BE, MTech, (Ph.D.) Specialization ISE Experience 13 years
+                Conferences – 22 Workshops - 6FDP - 04 Email-Id : dineshS@gmail.com
+              </p>
+              <a href="#" class="text-secondary text-decoration-none">Brindavan College</a>
+              <p class="text-black-50">Associate Professor & H.O.D</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </main>
+    <footer>
+      <div class="container-fluid p-0">
+        <div class="row text-left">
+          <div class="col-md-5 col-sm-5">
+            <h4 class="text-light">About us</h4>
+            <p class="text-muted">As we all know that the whole world is getting digitalize so for this purpose we are
+              creating this Website so that there should be a clear interaction between students and
+              teachers at one platform.</p>
+            <p class="pt-4 text-muted"> Copyright ©2020 All rights reserved | made by
+              <a href="www.youtube.com/c/dailytuition" target="_black">Stufa </a>
+            </p>
+          </div>
+          <div class="col-md-5 col-sm-12">
+            <h4 class="text-light">Newsletter</h4>
+            <p class="text-muted">Stay Updated</p>
+            <form class="form-inline">
+              <div class="col pl-0">
+                <div class="input-group pr-5">
+                  <input type="text" class="form-control bg-dark text-white" id="inlineFormInputGroupUsername2"
+                    placeholder="Email">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fas fa-arrow-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        <div class="col-md-2 col-sm-12">
+          <h4 class="text-light">Follow Us</h4>
+          <p class="text-muted">Let us be social</p>
+          <div class="column text-light">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="../static/js/main.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../static/js/clock.js"></script>
+  
+    <script>
+        AOS.init();
+    </script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+{% extends "layout.html" %}
+{% block content %}
+      <div class="content">
+        <div class="row">
+        <div class="col-md-4">
+          <div class="card card-user">
+            <div class="image">
+              <img src="../static/img/damir-bosnjak.jpg" alt="...">
+            </div>
+            <div class="card-body">
+              <div class="author">
+                <a href="{{ url_for('static', filename='profile_pics/' + current_user.profile_image) }}">
+                  <img class="avatar border-gray" src="{{image_file}}" alt="...">
+                  <h5 class="title">{{current_user.t_user.first_name}} {{current_user.t_user.last_name}}</h5>
+                </a>
+                <p class="description">
+                  @chetfaker
+                </p>
+              </div>
+              <p class="description text-center">
+                "I like the way you work it
+                <br> No diggity
+                <br> I wanna bag it up"
+              </p>
+            </div>
+            <div class="card-footer">
+              <hr>
+              <div class="button-container">
+                <div class="row">
+                  <div class="col-lg-3 col-md-6 col-6 ml-auto">
+                    <h5>12
+                      <br>
+                      <small>Post</small>
+                    </h5>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+                    <h5>1k
+                      <br>
+                      <small>liked</small>
+                    </h5>
+                  </div>
+                  <div class="col-lg-3 mr-auto">
+                    <h5>{{current_user.s_user.branch}}
+                      <br>
+                      <small>Class</small>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">Edit Profile</h5>
+              </div>
+              <div class="card-body">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class=flashes>
+                  {% for message in messages %}
+                  <p style="margin-right: 20%; margin-left: 20%; text-align: center;"><strong style="color:royalblue;">{{ message }}</strong></p>
+                  {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+                <form action="" method="POST" enctype="multipart/form-data">
+                  {{ form.hidden_tag() }}
+                  <div class="row">
+                    <div class="col-md-5 pr-1">
+                      <div class="form-group">
+                        <label>USN</label>
+                        {{form.usn(class='form-control')  }}
+                      </div>
+                    </div>
+
+                    <div class="col-md-3 px-1">
+                      <div class="form-group">
+                        <label>Username</label>
+                        {{form.username(class='form-control')  }}
+                      </div>
+                    </div>
+
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        {{form.email(class='form-control')  }}
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>First Name</label>
+                        {{form.fname(class='form-control')  }}
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 pl-1">
+                      <div class="form-group">
+                        <label>Last Name</label>
+                        {{form.lname(class='form-control')  }}
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 pl-1">
+                      <div class="form-group">
+                        <label>Address</label>
+                        {{form.address(class='form-control')  }}
+                      </div>
+                    </div>
+                  </div>
+                   
+                  <div class="row">
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>Branch</label>
+                        {{form.branch(class='form-control')  }}
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                      <div class="form-group">
+                        <label>SEM</label>
+                        {{form.sem(class='form-control')  }}
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="upload-btn-wrapper">
+                        <button class="btn">Upload a file</button>
+                      {{ form.picture.label() }}
+                      {{ form.picture(class='form-control') }}
+                      </div>
+                      {% if form.picture.errors %}
+                      {% for error in form.picture.errors %}
+                      <span class="text-danger">{{ error }}</span></br>
+                      {% endfor %}
+                      {% endif %}
+                    </div>
+                  </div>
+                
+
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                    {{ form.submit(class="btn btn-primary btn-round") }}
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endblock content %}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../../static/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../../static/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        Paper Dashboard 2 by Creative Tim
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <!-- CSS Files -->
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../static/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+
+</head>
+
+<!-- CSS Just for demo purpose, don't include it in your project -->
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h3 style="text-align: center; font-family: 'Times New Roman', Times, serif; margin-top: 10px;"> Timetable</h2>
+         <p style="text-align: center; font-family: 'Times New Roman', Times, serif; margin-top: 10px;">Dept.-{{quer.branch}}   Class-{{quer.sem}}  sec-{{quer.sec}}</p>
+            <div class="card-body">
+                <form method="GET">
+                    {{ form.hidden_tag() }}
+                <div style="overflow-x:auto;">
+                    <table border="2" cellspacing="3" align="center">
+                        <tr>
+                            <td align="center">
+                            <td>9:00-9:50</td>
+                            <td>9:50-10:40</td>
+                            <td>11:00-11:50</td>
+                            <td>11:50-12:40</td>
+                            <td>12.40-1.30</td>
+                            <td>1:30-2:25</td>
+                            <td>2:25-3:20</td>
+                            <td>3:20-4:15</td>
+                        </tr>
+                
+                        <tr>
+                            <td align="center">MONDAY</td>
+                            <td align="center">{{form.val1(class='form-control', placeholder='sub')  }}</td>
+                            <td align="center">{{form.val2(class='form-control', placeholder='sub')  }}</td>
+                            <td align="center">{{form.val3(class='form-control', placeholder='sub')  }}</td>
+                
+                            <td align="center">{{form.val4(class='form-control', placeholder='sub')  }}</td>
+                            <td rowspan="6" align="center">L<br>U<br>N<br>C<br>H</td>
+                            <td align="center">{{form.val5(class='form-control', placeholder='sub')  }}</td>
+                            <td align="center">{{form.val6(class='form-control', placeholder='sub')  }}</td>
+                            <td align="center">{{form.val7(class='form-control', placeholder='sub')  }}</td>
+                        </tr>
+                        <tr>
+                            <td align="center">TUESDAY</td>
+                            <td align="center">
+                                <font color="blue">{{form.val8(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">
+                                <font color="red">{{form.val9(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">{{form.val10( class='form-control', placeholder='sub')  }}</td>
+                            <td align="center">
+                                <font color="orange">{{form.val11(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">
+                                <font color="maroon">{{form.val12(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">{{form.val13(class='form-control', placeholder='sub')  }}
+                            <td align="center">
+                                <font color="maroon">{{form.val14(class='form-control', placeholder='sub')  }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">WEDNESDAY
+                            <td align="center">
+                                <font color="blue">{{form.val15( class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">
+                                <font color="red">{{form.val16(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">{{form.val17( class='form-control', placeholder='sub')  }}</td>
+                            <td align="center">
+                                <font color="orange">{{form.val18(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">
+                                <font color="maroon">{{form.val19(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">{{form.val20(class='form-control', placeholder='sub')  }}</td>
+                            <td align="center">
+                                <font color="maroon">{{form.val21(class='form-control', placeholder='sub')  }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">THURSDAY
+                            <td align="center">
+                                <font color="blue">{{form.val22(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">
+                                <font color="red">{{form.val23(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">{{form.val24(class='form-control', placeholder='sub')  }}</td>
+                            <td align="center">
+                                <font color="orange">{{form.val25(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">
+                                <font color="maroon">{{form.val26(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">{{form.val27(class='form-control', placeholder='sub')  }}
+                            <td align="center">
+                                <font color="maroon">{{form.val28(class='form-control', placeholder='sub')  }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">FRIDAY
+                            <td align="center">
+                                <font color="orange">{{form.val29(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">
+                                <font color="maroon">{{form.val30(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">
+                                <font color="blue">{{form.val31(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">{{form.val32(class='form-control', placeholder='sub')  }}</td>
+                            <td align="center">
+                                <font color="pink">{{form.val33(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">
+                                <font color="brown">{{form.val34(class='form-control', placeholder='sub')  }}
+                            </td>
+                            <td align="center">{{form.val35(class='form-control', placeholder='sub')  }}</td>
+                        </tr>
+                       
+                
+                    </table>
+                </div>
+                </div>
+                </form>
+            </div>
+    </div>
+
+    <!--   Core JS Files   -->
+    <script src="../../static/js/core/jquery.min.js"></script>
+    <script src="../../static/js/core/popper.min.js"></script>
+    <script src="../../static/js/core/bootstrap.min.js"></script>
+    <script src="../../static/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- Chart JS -->
+    <script src="../../static/js/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="../../static/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+
+</body>
+
+</html>

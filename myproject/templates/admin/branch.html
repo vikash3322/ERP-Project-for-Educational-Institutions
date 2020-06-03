@@ -1,0 +1,147 @@
+{% extends "admin/admin_layout.html" %}
+{% block content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+           <div class="card  ">
+              <div class="card-header ">
+                <h5 class="card-title">Branch</h5>
+                <p class="card-category">Academic Branch </p>
+                </div>
+                <div class="card-body ">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#centralModalSm">
+                    Add Branch
+                </button>
+                
+                <!-- Central Modal Small -->
+                <div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                
+                    <!-- Change class .modal-sm to change the size of the modal -->
+                    <div class="modal-dialog modal-lg" role="document">
+                
+                
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title w-100" id="myModalLabel">Add Branch</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form class="text-center border border-light p-5"  method="POST">
+                            <div class="modal-body">
+                                
+                                    <div class="form-row mb-4">
+                                        <div class="col">
+                                           
+                                            {{ form.hidden_tag() }}
+                                            {{form.branch_id(placeholder="Branch ID",class="form-control") }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form.branch_name(placeholder="Branch Name",class="form-control") }}
+                                        </div>
+                                    </div>
+                                    <div class="form-row mb-4">
+                                        <div class="col">
+                                            {{ form.sem(placeholder="Semester",class="form-control ") }}
+
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    
+                                    
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                {{form.submit(class='btn btn-primary btn-sm')}}
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Central Modal Small -->
+                </div>
+            </div>
+        </div> 
+    </div>
+
+
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card  ">
+                <div class="card-header ">
+                    <h5 class="card-title">Branch info</h5>
+                    <p class="card-category">Academic Branch info </p>
+                </div>
+                <div class="card-body ">
+                  
+                    <div class="table-responsive">
+                        <input type="text" id="myInput" onkeyup="myFunction()" style="float: right; margin-right: 10px;"
+                            placeholder="Search for sub names.." title="Type in a name">
+                
+                        <table id="myTable" class="table table-striped table-bordered table-sm" cellspacing="0" >
+                            <tr class="header">
+                                <th style="width:20%;">Branch Code</th>
+                                <th style="width:40%;">Branch Name</th>
+                                <th style="width:40%;">Total Semester</th>
+                            </tr>
+                            {% for item in branches %}
+                            <tr>
+                                <td>{{item.branch_id}}</td>
+                                <td>{{item.branch_name}}</td>
+                                <td>{{item.sem}}</td>
+                            </tr>
+                            {% endfor %}
+                
+                
+                
+                        </table>
+                
+                        <script>
+                            function myFunction() {
+                                var input, filter, table, tr, td, i, txtValue;
+                                input = document.getElementById("myInput");
+                                filter = input.value.toUpperCase();
+                                table = document.getElementById("myTable");
+                                tr = table.getElementsByTagName("tr");
+                                for (i = 0; i < tr.length; i++) {
+                                    td = tr[i].getElementsByTagName("td")[1];
+                                    if (td) {
+                                        txtValue = td.textContent || td.innerText;
+                                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                            tr[i].style.display = "";
+                                        } else {
+                                            tr[i].style.display = "none";
+                                        }
+                                    }
+                                }
+
+                                for (i = 0; i < tr.length; i++) {
+                                    td = tr[i].getElementsByTagName("td")[0];
+                                    if (td) {
+                                        txtValue = td.textContent || td.innerText;
+                                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                            tr[i].style.display = "";
+                                        } else {
+                                            tr[i].style.display = "none";
+                                        }
+                                    }
+                                }
+                            }
+                        </script>
+                
+                
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

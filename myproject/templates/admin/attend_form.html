@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link href="../../static/css/index.css" rel="stylesheet" />
+
+    <style>
+    .card-body .form-control {
+         width:100%;
+           display:inline-block;
+           border: 0px;
+          
+}
+    </style>
+</head>
+
+<body>
+    
+    <div class="container">
+        <div class="jumbotron" id="jumbo" style="text-align: center;">
+            <h2>Attendance Taken for Subject : {{sub}}</h2>
+            </tr>
+        </div>
+    </div>
+    <div class="container">
+    {% for item in quer %}
+        
+      
+        <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+                <img src="{{ url_for('static', filename='profile_pics/' + item.s_users.profile_image) }}" alt="img" class="img-thumbnail img-size">
+                <div class="caption card-body">
+                    <h3>{{item.first_name}}  {{item.last_name}}</h3>
+                    <form method="POST">
+                       
+                        <div>
+                    <input name="usn" value={{item.usn}} id="usn"  class="form-control" placeholder="{{item.usn}}">
+                    </div>
+
+                    <div>
+                    <input name="dates" value={{date}} id="dates"  class="form-control" placeholder="{{date}}"></div>
+
+                    <div>
+                    <input name="sub" value={{sub}} id="sub"  class="form-control" placeholder="{{sub}}">
+                    </div>
+                   
+                    <div>
+                    <select  class="form-control" name="atten" id="atten">
+                        <option value="present">present</option>
+                        <option value="absent">absent</option>
+                      
+                    </select>
+                    </div>
+                   
+                    <input type="submit" onchange='this.form.submit()' value="submit" style="margin-top: 10px;">
+                    </form>
+                </div>
+            </div>
+        </div>
+       
+
+        
+   
+    {% endfor %}
+
+   </div>
+   
+
+
+    <!--Footer-->
+    <footer>
+        <div class="container">
+            <center>
+                <p>Copyright &copy; Lifestyle Store. All Rights Reserved | Contact Us: +91 90000 00000</p>
+            </center>
+        </div>
+    </footer>
+    <!--Footer end -->
+
+<script src="../../static/js/ajaxform.js"></script>
+</body>
+
+</html>
