@@ -10,3 +10,40 @@
 ⮚ Cloud-Based Application  
 ⮚ Web App Security 
 
+# screenshot
+
+![](screenshort/Screenshot(98).png)
+
+
+# Home page
+
+![](screenshort/Screenshot(97).png)
+
+# profile page
+
+
+![](screenshort/Screenshot(100).png)
+
+# blog
+
+
+![](screenshort/Screenshot(99).png)
+
+
+# Teacher dashboard
+
+
+![](screenshort/Screenshot%20(103).png)
+
+
+# admin dashboard
+
+![](screenshort/Screenshot%20(104).png)
+
+
+# digital classroom
+
+![](screenshort/Screenshot(101).png)
+
+
+![](screenshort/Screenshot(102).png)
